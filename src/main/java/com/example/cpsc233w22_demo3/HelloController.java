@@ -390,5 +390,4 @@ public class HelloController {
     void updateDriverDataButton(MouseEvent event) {
 
     }
-
 }
