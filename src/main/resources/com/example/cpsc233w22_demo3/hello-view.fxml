@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cpsc233w22_demo3.HelloController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#loadFile" text="Load" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#quitProgram" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <SplitPane dividerPositions="0.29342984409799555, 0.7800668151447662" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane>
+          <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Add Data" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="45.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Team" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x211" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="74.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Name" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x2111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="186.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Nation" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="102.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Win" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x111111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x211111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="214.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Birth Year" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1111111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x2111111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="158.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Races" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11111111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="130.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Fastest Lap" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x111111111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x211111111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="283.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Birth Year" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11111112" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111112" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="31.0" layoutY="317.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Team" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x111111121" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x211111121" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="31.0" layoutY="345.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Name" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1111111211" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x2111111211" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="373.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Win" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11111112111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111112111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="401.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Fastest Lap" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x111111121111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x211111121111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="457.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Nation" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x1111111211111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x2111111211111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="485.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Birth Year" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11111112111111" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111112111111" />
+                     </textFill>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="28.0" layoutY="429.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Races" textAlignment="CENTER" wrapText="false">
+                     <font>
+                        <Font size="18.0" fx:id="x11111112111112" />
+                     </font>
+                     <textFill>
+                        <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111112111112" />
+                     </textFill>
+                  </Label>
+                  <TextField fx:id="addTeam" layoutX="90.0" layoutY="44.0" onKeyTyped="#handleAddTeam" />
+                  <TextField fx:id="addName" layoutX="90.0" layoutY="72.0" onKeyTyped="#handleAddName" />
+                  <TextField fx:id="addWin" layoutX="90.0" layoutY="100.0" onKeyTyped="#handleAddWin" />
+                  <TextField fx:id="addFastestLap" layoutX="90.0" layoutY="128.0" onKeyTyped="#handleAddFastestLap" />
+                  <TextField fx:id="addRaces" layoutX="90.0" layoutY="156.0" onKeyTyped="#handleAddRaces" />
+                  <TextField fx:id="addNation" layoutX="90.0" layoutY="184.0" onKeyTyped="#handleAddNation" />
+                  <TextField fx:id="addBirthYear" layoutX="90.0" layoutY="212.0" onKeyTyped="#handleAddBirthYear" />
+                  <Button fx:id="addDriverButton" layoutX="132.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#addDriverButton" text="Add Driver" />
+                  <TextField fx:id="updateTeam" layoutX="90.0" layoutY="316.0" onKeyTyped="#handleUpdateTeam" />
+                  <TextField fx:id="updateName" layoutX="90.0" layoutY="344.0" onKeyTyped="#handleUpdateName" />
+                  <TextField fx:id="updateWin" layoutX="90.0" layoutY="372.0" onKeyTyped="#handleUpdateWin" />
+                  <TextField fx:id="updateFastestLap" layoutX="90.0" layoutY="400.0" onKeyTyped="#handleUpdateFastestLap" />
+                  <TextField fx:id="updateRaces" layoutX="90.0" layoutY="428.0" onKeyTyped="#handleUpdateRaces" />
+                  <TextField fx:id="updateNation" layoutX="90.0" layoutY="456.0" onKeyTyped="#handleUpdateNation" />
+                  <TextField fx:id="updateBirthYear" layoutX="90.0" layoutY="484.0" onKeyTyped="#handleUpdateBirthYear" />
+                  <Button fx:id="updateDriverDataButton" layoutX="109.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#updateDriverDataButton" text="Update Driver Data" />
+          </children>
+        </AnchorPane>
+        <ScrollPane prefHeight="551.0" prefWidth="503.0">
+          <content>
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+              <children>
+                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" style="&#10;" text="View" textAlignment="CENTER" wrapText="false">
+                           <font>
+                      <Font size="18.0" fx:id="x1" />
+                           </font>
+                           <textFill>
+                      <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+                           </textFill></Label>
+                        <TextArea fx:id="mainView" layoutX="14.0" layoutY="37.0" prefHeight="345.0" prefWidth="404.0" />
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+        <AnchorPane>
+          <children>
+            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Features Menu" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                  <SplitMenuButton fx:id="selectFeatures" layoutX="29.0" layoutY="37.0" mnemonicParsing="false" text="Select Features">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#top5Wins" text="Top 5 Wins" />
+                      <MenuItem mnemonicParsing="false" onAction="#driversByFastestLap" text="Drivers By Fastest Lap" />
+                        <MenuItem mnemonicParsing="false" onAction="#bestDrivers" text="Best Drivers" />
+                        <MenuItem mnemonicParsing="false" onAction="#driversOverCertainAge" text="Drivers over a certain age" />
+                    </items>
+                  </SplitMenuButton>
+                  <Button fx:id="showFeaturesButton" layoutX="66.0" layoutY="71.0" mnemonicParsing="false" onMouseClicked="#showFeaturesButton" text="Show" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+      <children>
+        <Label fx:id="leftStatus" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+          <textFill>
+            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
+          </textFill>
+        </Label>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label fx:id="rightStatus" font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>
