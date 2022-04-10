@@ -16,7 +16,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class HelloController {
     private List<Document> documents = new ArrayList<>();
     @FXML
