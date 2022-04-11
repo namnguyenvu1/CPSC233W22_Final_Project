@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Document implements Comparable<Document> {
+public class Document implements Comparable<Document>{
     protected String team;
     protected String name;
     protected int wins;

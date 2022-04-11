@@ -2,7 +2,7 @@ package Main;
 
 import java.util.*;
 
-public class ManagerDocument {
+public class ManagerDocument{
     List<Document> documents;
     public ManagerDocument managerDocument;
 
@@ -14,8 +14,7 @@ public class ManagerDocument {
     public static Integer fastestLaps;
     public static Integer races;
 
-    public void addData() {
-        Scanner scannerContinue = new Scanner(System.in);
+    public Document addData() {
         List<Document> lstDocuments = new ArrayList<Document>();
         int x;
         do {
@@ -43,7 +42,6 @@ public class ManagerDocument {
                     System.out.println("Invalid name");
                 }
             } while (Objects.equals(name, ""));
-
 
             do {
                 try {
@@ -122,8 +120,16 @@ public class ManagerDocument {
                     1--YES
                     2--NO
                     """);
+            Scanner scannerContinue = new Scanner(System.in);
             x = scannerContinue.nextInt();
+            return players;
         } while (x == 1);
+//        documents.addAll(lstDocuments);
+    }
+
+    public void addPlayers(Document players){
+        List<Document> lstDocuments = new ArrayList<Document>();
+        lstDocuments.add(players);
         documents.addAll(lstDocuments);
     }
 
@@ -397,9 +403,10 @@ public class ManagerDocument {
         //Initialize the string
         String string = "";
         //Loops to add Wall to first line of the string
-        Document player = getPlayerByName(name);
+//        Document player = getPlayerByName(name);
         for(int i = 0; i < documents.size(); i++) {
-            string = string + documents.get(i) + "\t";
+            Document player = documents.get(i);
+            string = string + player + "\t";
         }
         string = string +'\n';
         return string;

@@ -1,6 +1,8 @@
 package com.example.cpsc233w22_demo3;
 
 import Main.Document;
+import Main.ManagerDocument;
+import Main.Players;
 import Main.Reader;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import java.util.List;
 
 public class HelloController {
     private List<Document> documents = new ArrayList<>();
+    ManagerDocument managerDocument = new ManagerDocument();
     @FXML
     private TextField addBirthYear;
 
@@ -47,6 +50,9 @@ public class HelloController {
 
     @FXML
     private TextArea mainView;
+
+    @FXML
+    private TextField nameToDelete;
 
     @FXML
     private MenuItem quit;
@@ -101,11 +107,24 @@ public class HelloController {
 
     @FXML
     void addDriverButton(MouseEvent event) {
-        List<Document> lstDocuments = new ArrayList<Document>();
-        Document driver = new Document(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
-        lstDocuments.add(driver);
-        documents.addAll(lstDocuments);
-        mainView.setText(String.valueOf(documents));
+////        List<Document> lstDocuments = new ArrayList<Document>();
+//        Document driver = new Document(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
+////        lstDocuments.add(driver);
+////        documents.addAll(lstDocuments);
+//        managerDocument.addPlayers(driver);
+//        managerDocument.playerString();
+//        mainView.setText(managerDocument.playerString());
+
+        Document driver = new Players(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
+        documents.add(driver);
+        managerDocument.addPlayers(driver);
+        String x = "";
+        for (Document aDocument : documents) {
+            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+        }
+        mainView.setText(x);
     }
 
     @FXML
@@ -217,6 +236,11 @@ public class HelloController {
             System.out.println(e);
         }
         return driverWin;
+    }
+
+    @FXML
+    void handleNameToDelete(KeyEvent event) {
+
     }
 
     @FXML
@@ -366,6 +390,12 @@ public class HelloController {
     void bestDrivers(ActionEvent event) {
         //Set text of the button to what user selected
         selectFeatures.setText("Best Drivers");
+    }
+
+    @FXML
+    void deletePlayerButton(MouseEvent event) {
+        String name = String.valueOf(nameToDelete.getText());
+        mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
     }
 
     @FXML
