@@ -395,7 +395,14 @@ public class HelloController {
     @FXML
     void deletePlayerButton(MouseEvent event) {
         String name = String.valueOf(nameToDelete.getText());
+        managerDocument.deleteDocument(name);
         mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
+//        String x = "";
+//        for (ManagerDocument aDocument : managerDocument) {
+//            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+//                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+//                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+//        }
     }
 
     @FXML
