@@ -6,129 +6,8 @@ public class ManagerDocument{
     List<Document> documents;
     public ManagerDocument managerDocument;
 
-    public static String team;
-    public static String name;
-    public static String nationality;
-    public static Integer wins;
-    public static Integer birthYear;
-    public static Integer fastestLaps;
-    public static Integer races;
-
     public List<Document> getDocuments(){
         return documents;
-    }
-
-    public Document addData() {
-        List<Document> lstDocuments = new ArrayList<Document>();
-        int x;
-        do {
-            Scanner scanner = new Scanner(System.in);
-            do {
-                try {
-                    System.out.print("Enter the driver team: ");
-                    team = scanner.nextLine();
-                    if (Character.isDigit(team.charAt(0))) {
-                        team = "";
-                    }
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("Invalid name");
-                }
-            } while (Objects.equals(team, ""));
-
-            do {
-                try {
-                    System.out.print("Enter the driver name: ");
-                    name = scanner.nextLine();
-                    if (Character.isDigit(name.charAt(0))) {
-                        name = "";
-                    }
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("Invalid name");
-                }
-            } while (Objects.equals(name, ""));
-
-            do {
-                try {
-                    System.out.print("Enter the driver nationality: ");
-                    nationality = scanner.nextLine();
-                    if (Character.isDigit(nationality.charAt(0))) {
-                        nationality = "";
-                    }
-                } catch (StringIndexOutOfBoundsException e) {
-                    System.out.println("Invalid name");
-                }
-            } while (Objects.equals(nationality, ""));
-
-            boolean validInput = false;
-            do {
-                System.out.print("Enter the driver's year of birth: ");
-                if (scanner.hasNextInt()) {
-                    birthYear = scanner.nextInt();
-                    validInput = true;
-                } else if (birthYear == null || birthYear <= 0) {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                } else {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                }
-                scanner.nextLine();
-            } while (!validInput || Integer.toString(birthYear).equals("") || birthYear <= 0);
-
-            boolean validInput1 = false;
-            do {
-                System.out.print("Enter number of wins of driver: ");
-                if (scanner.hasNextInt()) {
-                    wins = scanner.nextInt();
-                    validInput1 = true;
-                } else if (wins == null || wins <= 0) {
-                    System.out.println("You have entered incorrect input! Please enter a whole, positive number only");
-                } else {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                }
-                scanner.nextLine();
-            } while (!validInput1 || Integer.toString(wins).equals("") || wins <= 0);
-
-            boolean validInput2 = false;
-            do {
-                System.out.print("Enter number of fastest laps: ");
-                if (scanner.hasNextInt()) {
-                    fastestLaps = scanner.nextInt();
-                    validInput2 = true;
-                } else if (fastestLaps == null || fastestLaps <= 0) {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                } else {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                }
-                scanner.nextLine();
-            } while (!validInput2 || Integer.toString(fastestLaps).equals("") || fastestLaps <= 0);
-
-            boolean validInput3 = false;
-            do {
-                System.out.print("Enter the driver's number of races: ");
-                if (scanner.hasNextInt()) {
-                    races = scanner.nextInt();
-                    validInput3 = true;
-                } else if (races == null || races <= 0) {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                } else {
-                    System.out.println("You have entered incorrect input! Please enter a whole number only");
-                }
-                scanner.nextLine();
-            } while (!validInput3 || Integer.toString(races).equals("") || races <= 0);
-
-            Document players = new Players(team, name, wins, fastestLaps, races, birthYear, nationality);
-            lstDocuments.add(players);
-            System.out.println(players.toString());
-            scanner.nextLine();
-            System.out.println("""
-                    Would you like to add more players?
-                    1--YES
-                    2--NO
-                    """);
-            Scanner scannerContinue = new Scanner(System.in);
-            x = scannerContinue.nextInt();
-            return players;
-        } while (x == 1);
-//        documents.addAll(lstDocuments);
     }
 
     public void addPlayers(Document players){
@@ -149,7 +28,7 @@ public class ManagerDocument{
         this.documents.addAll(documents);
     }
 
-    public int getsize(){
+    public int getSize(){
         return documents.size();
     }
 
@@ -164,10 +43,6 @@ public class ManagerDocument{
         return true;
     }
 
-    public void showInfor() {
-        this.documents.forEach(documents -> System.out.println(documents.toString()));
-    }
-
     public Document getPlayerByName(String name) {
         Document doc = this.documents.stream()
                 .filter(document -> document.getName().equals(name))
@@ -176,10 +51,6 @@ public class ManagerDocument{
             return null;
         }
         return doc;
-    }
-
-    public void searchByBook() {
-        this.documents.stream().filter(doc -> doc instanceof Players).forEach(doc -> System.out.println(doc.toString()));
     }
 
     public List<Document> top5Wins() {
@@ -230,19 +101,13 @@ public class ManagerDocument{
     public List<Document> listByYear() {
         List<Document> listByYear = new ArrayList<>();
         List<Document> listByYearNew = new ArrayList<>();
-//        Scanner scanner = new Scanner(System.in);
-//        Document player = getPlayerByName(name);
-//        System.out.println("Enter a year to print driver born after ");
-//        int yearInput = scanner.nextInt();
         Collections.sort(documents, new DriverBirthYearComparator());
         listByYear = documents;
-        for(int i = 0; i < listByYear.size(); i++) {
-//            if (player.getBirthYear() > yearInput) {
-//                System.out.println(listByYear.get(i));
+        for(int i = 0; i < 5; i++) {
             listByYearNew.add(listByYear.get(i));
-            }
-        return listByYearNew;
         }
+        return listByYearNew;
+    }
 
     public void removeData() {
         Scanner scanner =  new Scanner(System.in);
@@ -438,9 +303,7 @@ public class ManagerDocument{
         String x = "";
         List<Document> top5Wins = top5Wins();
         for (Document aDocument : top5Wins) {
-            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+            x = x + aDocument.getName() +" with " +aDocument.getWins() + " wins\n";
         }
         return x;
     }
@@ -449,9 +312,7 @@ public class ManagerDocument{
         String x = "";
         List<Document> top5FastestLap = top5Fastest_Lap();
         for (Document aDocument : top5FastestLap) {
-            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+            x = x + aDocument.getName() +" with "+ aDocument.getFastestLaps() + " fastest laps\n";
         }
         return x;
     }
@@ -459,21 +320,25 @@ public class ManagerDocument{
     public String playerStringForBestDriver(){
         String x = "";
         List<Document> bestDriver = bestDriver();
+        int wins;
+        int races;
+        int winPercentage;
         for (Document aDocument : bestDriver) {
-            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+            wins = aDocument.getWins();
+            races = aDocument.getRaces();
+            winPercentage = 100 * wins/races;
+            x = x + aDocument.getName() +" with "+ winPercentage + " win percentage\n";
         }
         return x;
     }
 
     public String playerStringListByYear(){
         String x = "";
+        int age;
         List<Document> listByYear = listByYear();
         for (Document aDocument : listByYear) {
-            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+            age = 2022 - aDocument.getBirthYear();
+            x = x + aDocument.getName() +" is now " + age + " years old\n";
         }
         return x;
     }

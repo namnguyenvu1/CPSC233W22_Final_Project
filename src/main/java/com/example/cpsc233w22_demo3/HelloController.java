@@ -16,13 +16,16 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HelloController {
-//    private List<Document> documents = new ArrayList<>();
     ManagerDocument managerDocument = new ManagerDocument();
+
+    // FXML Part
     @FXML
     private TextField addBirthYear;
 
@@ -92,6 +95,7 @@ public class HelloController {
     @FXML
     private TextField updateWin;
 
+    // Initialize variables to use to check input later
     int driverBirthYear;
     int driverFastestLap;
     String driverName;
@@ -107,14 +111,27 @@ public class HelloController {
     String driverTeamUpdate;
     int driverWinUpdate;
 
+    /**
+     * Add drivers created by the users.
+     *
+     * @param event
+     */
     @FXML
     void addDriverButton(MouseEvent event) {
         Document driver = new Players(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
-//        documents.add(driver);
         managerDocument.addPlayers(driver);
         mainView.setText(managerDocument.playerString());
+        rightStatus.setText("Driver added!");
+        Color color = Color.BLUE;
+        rightStatus.setTextFill(color);
     }
 
+    /**
+     * Check the birth year of driver entered by the users.
+     *
+     * @param event
+     * @return the birth year of driver entered by the users after checked
+     */
     @FXML
     int handleAddBirthYear(KeyEvent event) {
         //Try to check birth year input of driver
@@ -133,6 +150,12 @@ public class HelloController {
         return driverBirthYear;
     }
 
+    /**
+     * Check the number of the fastest laps of driver entered by the users.
+     *
+     * @param event
+     * @return the number of the fastest laps of driver entered by the users after checked
+     */
     @FXML
     int handleAddFastestLap(KeyEvent event) {
         //Try to check fastest lap input of driver
@@ -151,6 +174,12 @@ public class HelloController {
         return driverFastestLap;
     }
 
+    /**
+     * Check the name of driver entered by the users.
+     *
+     * @param event
+     * @return the name of driver entered by the users after checked
+     */
     @FXML
     String handleAddName(KeyEvent event) {
         //Try to check name input of driver
@@ -164,6 +193,12 @@ public class HelloController {
         return driverName;
     }
 
+    /**
+     * Check the nationality of driver entered by the users.
+     *
+     * @param event
+     * @return the nationality of driver entered by the users after checked
+     */
     @FXML
     String handleAddNation(KeyEvent event) {
         //Try to check nation input of driver
@@ -177,6 +212,12 @@ public class HelloController {
         return driverNation;
     }
 
+    /**
+     * Check the number of races of driver entered by the users.
+     *
+     * @param event
+     * @return the number of races of driver entered by the users after checked
+     */
     @FXML
     int handleAddRaces(KeyEvent event) {
         //Try to check races input of driver
@@ -195,6 +236,12 @@ public class HelloController {
         return driverRaces;
     }
 
+    /**
+     * Check the team name of driver entered by the users.
+     *
+     * @param event
+     * @return the team name of driver entered by the users after checked
+     */
     @FXML
     String handleAddTeam(KeyEvent event) {
         //Try to check team input of driver
@@ -208,6 +255,12 @@ public class HelloController {
         return driverTeam;
     }
 
+    /**
+     * Check the team of driver entered by the users.
+     *
+     * @param event
+     * @return the team of driver entered by the users after checked
+     */
     @FXML
     int handleAddWin(KeyEvent event) {
         //Try to check win input of driver
@@ -226,11 +279,23 @@ public class HelloController {
         return driverWin;
     }
 
+    /**
+     * Check the name of driver to delete entered by the users.
+     *
+     * @param event
+     * @return the name of driver to delete entered by the users after checked
+     */
     @FXML
     void handleNameToDelete(KeyEvent event) {
 
     }
 
+    /**
+     * Check the updated birth year of driver entered by the users.
+     *
+     * @param event
+     * @return the updated birth year of driver entered by the users after checked
+     */
     @FXML
     int handleUpdateBirthYear(KeyEvent event) {
         //Try to check birth year update input of driver
@@ -249,6 +314,12 @@ public class HelloController {
         return driverBirthYearUpdate;
     }
 
+    /**
+     * Check the updated number of the fastest lap of driver entered by the users.
+     *
+     * @param event
+     * @return the updated number of the fastest lap of driver entered by the users after checked
+     */
     @FXML
     int handleUpdateFastestLap(KeyEvent event) {
         //Try to check fastest lap update input of driver
@@ -267,6 +338,12 @@ public class HelloController {
         return driverFastestLapUpdate;
     }
 
+    /**
+     * Check the updated name of driver entered by the users.
+     *
+     * @param event
+     * @return the updated name of driver entered by the users after checked
+     */
     @FXML
     String handleUpdateName(KeyEvent event) {
         //Try to check name update input of driver
@@ -280,6 +357,12 @@ public class HelloController {
         return driverNameUpdate;
     }
 
+    /**
+     * Check the updated nationality of driver entered by the users.
+     *
+     * @param event
+     * @return the updated nationality of driver entered by the users after checked
+     */
     @FXML
     String handleUpdateNation(KeyEvent event) {
         //Try to check nation update input of driver
@@ -293,6 +376,12 @@ public class HelloController {
         return driverNationUpdate;
     }
 
+    /**
+     * Check the updated number of races of driver entered by the users.
+     *
+     * @param event
+     * @return the updated number of races of driver entered by the users after checked
+     */
     @FXML
     int handleUpdateRaces(KeyEvent event) {
         //Try to check races update input of driver
@@ -311,6 +400,12 @@ public class HelloController {
         return driverRacesUpdate;
     }
 
+    /**
+     * Check the updated team name of driver entered by the users.
+     *
+     * @param event
+     * @return the updated team name of driver entered by the users after checked
+     */
     @FXML
     String handleUpdateTeam(KeyEvent event) {
         //Try to check team update input of driver
@@ -324,6 +419,12 @@ public class HelloController {
         return driverTeamUpdate;
     }
 
+    /**
+     * Check the updated number of wins of driver entered by the users.
+     *
+     * @param event
+     * @return the updated number of wins of driver entered by the users after checked
+     */
     @FXML
     int handleUpdateWin(KeyEvent event) {
         //Try to check win update input of driver
@@ -342,6 +443,22 @@ public class HelloController {
         return driverWinUpdate;
     }
 
+    /**
+     * Method to print out list of all drivers to the mainView
+     *
+     * @param event
+     */
+    @FXML
+    void listAllDrivers(ActionEvent event) {
+        selectFeatures.setText("List All Drivers");
+        mainView.setText(managerDocument.playerString());
+    }
+
+    /**
+     * Load the file prepared and print that to the mainView
+     *
+     * @param event
+     */
     @FXML
     void loadFile(ActionEvent event) {
         // Try to load a file
@@ -364,6 +481,9 @@ public class HelloController {
         }
     }
 
+    /**
+     * Alert with info about me/program
+     */
     @FXML
     void newMethod(ActionEvent event) {
         //Method to print data about us and the program
@@ -378,11 +498,21 @@ public class HelloController {
         alert0.setTitle("About");
     }
 
+    /**
+     * Method to quit program
+     *
+     * @param event
+     */
     @FXML
     void quitProgram(ActionEvent event) {
         Platform.exit();
     }
 
+    /**
+     * Save the file so that the users could continue in the future
+     *
+     * @param event
+     */
     @FXML
     void saveFile(ActionEvent event) {
         //Use file chooser to set directory to save file
@@ -394,7 +524,7 @@ public class HelloController {
         //Initialize a string
         List<Document> x = managerDocument.getDocuments();
         String string = "";
-        string = managerDocument.getsize() + "\n";
+        string = managerDocument.getSize() + "\n";
         for(Document i : x){
             Document player = managerDocument.getPlayerByName(i.getName());
             string = string + player.getTeam() +","+ player.getName()+
@@ -413,6 +543,11 @@ public class HelloController {
         }
     }
 
+    /**
+     * Method to print out list of the best drivers based on their win/races percentages to the mainView
+     *
+     * @param event
+     */
     @FXML
     void bestDrivers(ActionEvent event) {
         //Set text of the button to what user selected
@@ -420,14 +555,27 @@ public class HelloController {
         mainView.setText(managerDocument.playerStringForBestDriver());
     }
 
+    /**
+     * Method to delete player by their names then print the result to the mainView
+     *
+     * @param event
+     */
     @FXML
     void deletePlayerButton(MouseEvent event) {
         String name = nameToDelete.getText();
 //        mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
         managerDocument.deleteDocument(name);
         mainView.setText(managerDocument.playerString());
+        rightStatus.setText("Driver removed!");
+        Color color = Color.BLUE;
+        rightStatus.setTextFill(color);
     }
 
+    /**
+     * Method to print out list of drivers based on number of the fastest laps to the mainView
+     *
+     * @param event
+     */
     @FXML
     void driversByFastestLap(ActionEvent event) {
         //Set text of the button to what user selected
@@ -435,6 +583,11 @@ public class HelloController {
         mainView.setText(managerDocument.playerStringForDriverByFastestLap());
     }
 
+    /**
+     * Method to print out list of drivers over certain ages to the mainView
+     *
+     * @param event
+     */
     @FXML
     void driversOverCertainAge(ActionEvent event) {
         //Set text of the button to what user selected
@@ -442,6 +595,11 @@ public class HelloController {
         mainView.setText(managerDocument.playerStringListByYear());
     }
 
+    /**
+     * Method to print out list of top 5 drivers based on number of the wins to the mainView
+     *
+     * @param event
+     */
     @FXML
     void top5Wins(ActionEvent event) {
         //Set text of the button to what user selected
@@ -449,13 +607,35 @@ public class HelloController {
         mainView.setText(managerDocument.playerStringForTop5Wins());
     }
 
+    /**
+     * Button to update driver's data
+     *
+     * @param event
+     */
     @FXML
     void updateDriverDataButton(MouseEvent event) {
         Document players = managerDocument.getPlayerByName(driverNameUpdate);
         if (players == null){
-            //Handle
+            mainView.setText("Player " + driverNameUpdate + " doesn't exist");
+        } else {
+            if (driverTeamUpdate != null){
+                players.setTeam(driverTeamUpdate);
+            } if (driverNationUpdate != null){
+                players.setNationality(driverNationUpdate);
+            } if (driverNameUpdate != null){
+                players.setName(driverNameUpdate);
+            } if (!Objects.equals(updateWin.getText(), "")){
+                players.setWins(driverWinUpdate);
+            } if (!Objects.equals(updateRaces.getText(), "")){
+                players.setRaces(driverRacesUpdate);
+            } if (!Objects.equals(updateFastestLap.getText(), "")){
+                players.setFastestLaps(driverFastestLapUpdate);
+            } if (!Objects.equals(updateBirthYear.getText(), "")){
+                players.setBirthYear(driverBirthYearUpdate);
+            }
+            mainView.setText(managerDocument.playerString());
         }
-        players.setWins(driverWinUpdate);
-        mainView.setText(managerDocument.playerString());
+//        players.setWins(driverWinUpdate);
+//        mainView.setText(managerDocument.playerString());
     }
 }

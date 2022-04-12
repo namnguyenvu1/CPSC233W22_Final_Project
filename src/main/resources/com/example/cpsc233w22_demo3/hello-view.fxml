@@ -58,7 +58,6 @@
           <items>
             <MenuItem mnemonicParsing="false" onAction="#loadFile" text="Load" />
             <MenuItem mnemonicParsing="false" onAction="#saveFile" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
             <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#quitProgram" text="Quit" />
           </items>
         </Menu>
@@ -244,6 +243,7 @@
                       <MenuItem mnemonicParsing="false" onAction="#driversByFastestLap" text="Drivers By Fastest Lap" />
                         <MenuItem mnemonicParsing="false" onAction="#bestDrivers" text="Best Drivers" />
                         <MenuItem mnemonicParsing="false" onAction="#driversOverCertainAge" text="Drivers over a certain age" />
+                        <MenuItem mnemonicParsing="false" onAction="#listAllDrivers" text="List all drivers" />
                     </items>
                   </SplitMenuButton>
                   <Label alignment="CENTER" layoutX="10.0" layoutY="148.0" style="&#10;" text="Delete Driver" textAlignment="CENTER" wrapText="false">

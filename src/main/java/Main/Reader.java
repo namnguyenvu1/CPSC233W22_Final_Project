@@ -23,7 +23,7 @@ public class Reader {
                 //Split the words
                 String[] integers = line.split(",");
                 //Add to document
-                Document driver = new Players(integers[0], integers[1], Integer.parseInt(integers[2].trim()), Integer.parseInt(integers[3].trim()), Integer.parseInt(integers[4].trim()), Integer.parseInt(integers[5].trim()), integers[6]);
+                Document driver = new Players(integers[0].trim(), integers[1].trim(), Integer.parseInt(integers[2].trim()), Integer.parseInt(integers[3].trim()), Integer.parseInt(integers[4].trim()), Integer.parseInt(integers[5].trim()), integers[6].trim());
                 lstDocuments.add(driver);
 //                managerDocument.addPlayers(driver);
             }
