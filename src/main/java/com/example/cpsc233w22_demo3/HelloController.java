@@ -118,7 +118,9 @@ public class HelloController {
      */
     @FXML
     void addDriverButton(MouseEvent event) {
-        if (driverWin >= 0 && driverFastestLap >= 0 && driverRaces >= 0 && driverBirthYear >= 0) {
+        if (driverWin >= 0 && driverFastestLap >= 0 && driverRaces >= 0 && driverBirthYear >= 0 && driverName != null
+                && !driverName.equals("") && driverTeam!= null && !Objects.equals(driverTeam, "" )
+                && driverNation != null && !driverNation.equals("")) {
             Document driver = new Players(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
             managerDocument.addPlayers(driver);
             mainView.setText(managerDocument.playerString());
@@ -590,7 +592,7 @@ public class HelloController {
     @FXML
     void bestDrivers(ActionEvent event) {
         //Set text of the button to what user selected
-        selectFeatures.setText("Best Drivers");
+        selectFeatures.setText("Drivers' Ranking");
         mainView.setText(managerDocument.playerStringForBestDriver());
     }
 
@@ -616,20 +618,32 @@ public class HelloController {
     @FXML
     void driversByFastestLap(ActionEvent event) {
         //Set text of the button to what user selected
-        selectFeatures.setText("Drivers By Fastest Lap");
+        selectFeatures.setText("Top 5 Fastest Lap");
         mainView.setText(managerDocument.playerStringForDriverByFastestLap());
     }
 
     /**
-     * Method to print out list of drivers over certain ages to the mainView
+     * Method to print out list of 5 oldest drivers to the mainView
      *
      * @param event
      */
     @FXML
-    void driversOverCertainAge(ActionEvent event) {
+    void fiveOldestDrivers(ActionEvent event) {
         //Set text of the button to what user selected
-        selectFeatures.setText("Drivers over a certain age");
+        selectFeatures.setText("5 Oldest Drivers");
         mainView.setText(managerDocument.playerStringListByYear());
+    }
+
+    /**
+     * Method to print out list of 5 youngest drivers to the mainView
+     *
+     * @param event
+     */
+    @FXML
+    void fiveYoungestDrivers(ActionEvent event) {
+        //Set text of the button to what user selected
+        selectFeatures.setText("5 Youngest Drivers");
+        mainView.setText(managerDocument.playerStringListByYearReverse());
     }
 
     /**

@@ -130,199 +130,45 @@ public class ManagerDocument{
     }
 
     /**
-     * Function to sort the list of drivers by their birth year
+     * Function to sort the list of drivers by their birth year from the oldest one
      *
-     * @return a list of top 5 players by drivers by their birth year
+     * @return a list of top 5 players by drivers by their birth year from the oldest one
      */
     public List<Document> listByYear() {
         List<Document> listByYear = new ArrayList<>();
         List<Document> listByYearNew = new ArrayList<>();
         Collections.sort(documents, new DriverBirthYearComparator());
         listByYear = documents;
-        for(int i = 0; i < 5; i++) {
-            listByYearNew.add(listByYear.get(i));
+        if (listByYear.size() < 5){
+            listByYearNew = listByYear;
+        } else{
+            for(int i = 0; i < 5; i++) {
+                listByYearNew.add(listByYear.get(i));
+            }
         }
         return listByYearNew;
     }
 
-    public void removeData() {
-        Scanner scanner =  new Scanner(System.in);
-        System.out.print("Enter id to remove: ");
-        String id = scanner.nextLine();
-        System.out.println(deleteDocument(id) ? "Success" : "Fail");
-    }
-
-    public void addNumberWin() {
-        Scanner scanner =  new Scanner(System.in);
-        System.out.print("Enter name to remove: ");
-        String name = scanner.nextLine();
-        Document player = getPlayerByName(name);
-        if(player == null){
-//            log err
-            System.out.println("Error");
+    /**
+     * Function to sort the list of drivers by their birth year from the youngest one
+     *
+     * @return a list of top 5 players by drivers by their birth year from the youngest one
+     */
+    public List<Document> listByYearReverse() {
+        List<Document> listByYearReverse = new ArrayList<>();
+        List<Document> listByYearReverseNew = new ArrayList<>();
+        Collections.sort(documents, new DriverBirthYearComparator());
+        listByYearReverse = documents;
+        if (listByYearReverse.size() < 5){
+            for(int i = listByYearReverse.size() - 1; i >= 0; i--) {
+                listByYearReverseNew.add(listByYearReverse.get(i));
+            }
         } else{
-            System.out.println("Enter win: ");
-            int win = scanner.nextInt();
-            player.setWins(win);
+            for(int i = listByYearReverse.size() - 1; i > listByYearReverse.size() - 6; i--) {
+                listByYearReverseNew.add(listByYearReverse.get(i));
+            }
         }
-    }
-
-    public void addFastestLap() {
-        String name = null;
-        Scanner input1 = new Scanner(System.in);
-
-        do{
-            try {
-                System.out.print("Enter the driver name: ");
-                name = input1.nextLine();
-                if(Character.isDigit(name.charAt(0))){
-                    name = "";
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Invalid name");
-            }
-        }while(Objects.equals(name, ""));
-
-        Document player = getPlayerByName(name);
-        Integer fastest_laps = null;
-        Scanner input = new Scanner(System.in);
-
-        boolean validInput1 = false;
-        do {
-            System.out.println("How many fastest laps do you want to add? ");
-            if (input.hasNextInt()){
-                fastest_laps = input.nextInt();
-                validInput1 = true;
-            } else {
-                System.out.println("You have entered incorrect input! Please enter a whole number only");
-            }
-            input.nextLine();
-        } while (!validInput1 || Integer.toString(fastest_laps).equals("") || fastest_laps <= 0);
-
-        if (getPlayerByName(name) != null) {
-            int x = player.getFastestLaps();
-            x = x + fastest_laps;
-            player.setFastestLaps(x);
-            System.out.println(name + "'s number of fastest laps has been updated to " + x);
-        }
-    }
-
-    public void addNumberOfRaces() {
-        String name = null;
-        Scanner input1 = new Scanner(System.in);
-
-        do {
-            try {
-                System.out.print("Enter the driver name: ");
-                name = input1.nextLine();
-                if (Character.isDigit(name.charAt(0))) {
-                    name = "";
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Invalid name");
-            }
-        } while (Objects.equals(name, ""));
-
-        Integer number_of_races = null;
-        Scanner input = new Scanner(System.in);
-        Document player = getPlayerByName(name);
-
-        boolean validInput2 = false;
-        do {
-            System.out.println("How many number of races do you want to add? ");
-            if (input.hasNextInt()) {
-                number_of_races = input.nextInt();
-                validInput2 = true;
-            } else {
-                System.out.println("You have entered incorrect input! Please enter a whole number only");
-            }
-            input.nextLine();
-        } while (!validInput2 || Integer.toString(number_of_races).equals("") || number_of_races <= 0);
-
-        if (getPlayerByName(name) != null) {
-            int x = player.getRaces();
-            x = x + number_of_races;
-            player.setRaces(x);
-            System.out.println(name + "'s number of number of races has been updated to " + x);
-        }
-    }
-
-    public void updateNationality(){
-        String name = null;
-        Scanner input1 = new Scanner(System.in);
-
-        do {
-            try {
-                System.out.print("Enter the driver name: ");
-                name = input1.nextLine();
-                if (Character.isDigit(name.charAt(0))) {
-                    name = "";
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Invalid name");
-            }
-        } while (Objects.equals(name, ""));
-
-        String nationality = null;
-        Scanner input = new Scanner(System.in);
-        Document player = getPlayerByName(name);
-
-        do {
-            try {
-                System.out.print("Enter the driver's new nationality: ");
-                nationality = input.nextLine();
-                if (Character.isDigit(nationality.charAt(0))) {
-                    nationality = "";
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Invalid name");
-            }
-        } while (Objects.equals(nationality, ""));
-
-        if (getPlayerByName(name) != null) {
-            player.setNationality(nationality);
-            System.out.println(name + "'s nationality has been updated to " + nationality);
-        }
-    }
-
-    public void updateBirthYear(){
-        String name = null;
-        Scanner input1 = new Scanner(System.in);
-
-        do {
-            try {
-                System.out.print("Enter the driver name: ");
-                name = input1.nextLine();
-                if (Character.isDigit(name.charAt(0))) {
-                    name = "";
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                System.out.println("Invalid name");
-            }
-        } while (Objects.equals(name, ""));
-
-        Integer birthYear = null;
-        Scanner input = new Scanner(System.in);
-        Document player = getPlayerByName(name);
-
-        boolean validInput = false;
-        do {
-            System.out.print("Enter the driver's year of birth: ");
-            if (input.hasNextInt()) {
-                birthYear = input.nextInt();
-                validInput = true;
-            } else if (birthYear == null || birthYear <= 0) {
-                System.out.println("You have entered incorrect input! Please enter a whole number only");
-            } else {
-                System.out.println("You have entered incorrect input! Please enter a whole number only");
-            }
-            input.nextLine();
-        } while (!validInput || Integer.toString(birthYear).equals("") || birthYear <= 0);
-
-        if (getPlayerByName(name) != null) {
-            player.setBirthYear(birthYear);
-            System.out.println(name + "'s birth year has been updated to " + birthYear);
-        }
+        return listByYearReverseNew;
     }
 
     /**
@@ -389,15 +235,31 @@ public class ManagerDocument{
     }
 
     /**
-     * Function to get a string of the list sorted by birth year
+     * Function to get a string of the list sorted by birth year from the oldest one
      *
-     * @return string of list sorted by birth year
+     * @return string of list sorted by birth year from the oldest one
      */
     public String playerStringListByYear(){
         String x = "";
         int age;
         List<Document> listByYear = listByYear();
         for (Document aDocument : listByYear) {
+            age = 2022 - aDocument.getBirthYear();
+            x = x + aDocument.getName() + " from " + aDocument.getTeam()+" is now " + age + " years old\n";
+        }
+        return x;
+    }
+
+    /**
+     * Function to get a string of the list sorted by birth year from the youngest one
+     *
+     * @return string of list sorted by birth year from the youngest one
+     */
+    public String playerStringListByYearReverse(){
+        String x = "";
+        int age;
+        List<Document> listByYearReverse = listByYearReverse();
+        for (Document aDocument : listByYearReverse) {
             age = 2022 - aDocument.getBirthYear();
             x = x + aDocument.getName() + " from " + aDocument.getTeam()+" is now " + age + " years old\n";
         }
