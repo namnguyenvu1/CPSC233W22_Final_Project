@@ -16,9 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,6 +49,12 @@ public class HelloController {
     private TextField addWin;
 
     @FXML
+    private Button deletePlayer;
+
+    @FXML
+    private Button findPlayer;
+
+    @FXML
     private Label leftStatus;
 
     @FXML
@@ -60,6 +64,9 @@ public class HelloController {
     private TextField nameToDelete;
 
     @FXML
+    private TextField nameToFind;
+
+    @FXML
     private MenuItem quit;
 
     @FXML
@@ -67,9 +74,6 @@ public class HelloController {
 
     @FXML
     private SplitMenuButton selectFeatures;
-
-    @FXML
-    private Button showFeaturesButton;
 
     @FXML
     private TextField updateBirthYear;
@@ -110,6 +114,8 @@ public class HelloController {
     int driverRacesUpdate;
     String driverTeamUpdate;
     int driverWinUpdate;
+    String nameToDeleteOutput;
+    String nameToFindOutput;
 
     /**
      * Add drivers created by the users.
@@ -127,10 +133,12 @@ public class HelloController {
             rightStatus.setText("Driver added!");
             Color color = Color.BLUE;
             rightStatus.setTextFill(color);
+            leftStatus.setText("");
         } else {
             leftStatus.setText("Can't add this driver, please check your input!");
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
         }
     }
 
@@ -154,6 +162,7 @@ public class HelloController {
             leftStatus.setText("Can't parse birth year from " + addBirthYear.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverBirthYear = -1;
         }
         catch (Exception e){
@@ -182,6 +191,7 @@ public class HelloController {
             leftStatus.setText("Can't parse number of fastest laps from " + addFastestLap.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverFastestLap = -1;
         }
         catch (Exception e){
@@ -205,6 +215,8 @@ public class HelloController {
         //Handle exception
         catch (Exception e){
             System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
         }
         return driverName;
     }
@@ -224,6 +236,8 @@ public class HelloController {
         //Handle exception
         catch (Exception e){
             System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
         }
         return driverNation;
     }
@@ -249,6 +263,7 @@ public class HelloController {
             leftStatus.setText("Can't parse number of races from " + addRaces.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverRaces = -1;
         }
         catch (Exception e){
@@ -272,6 +287,8 @@ public class HelloController {
         //Handle exception
         catch (Exception e){
             System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
         }
         return driverTeam;
     }
@@ -296,6 +313,7 @@ public class HelloController {
             leftStatus.setText("Can't parse number of wins from " + addWin.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverWin = -1;
         }
         catch (Exception e){
@@ -311,8 +329,32 @@ public class HelloController {
      * @return the name of driver to delete entered by the users after checked
      */
     @FXML
-    void handleNameToDelete(KeyEvent event) {
+    String handleNameToDelete(KeyEvent event) {
+        //Try to check name to delete input of driver
+        try{
+            nameToDeleteOutput = nameToDelete.getText();
+        }
+        //Handle exception
+        catch (Exception e){
+            System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
+        }
+        return nameToDeleteOutput;
+    }
 
+    @FXML
+    String handleNameToFind(KeyEvent event) {
+        try{
+            nameToFindOutput = nameToFind.getText();
+        }
+        //Handle exception
+        catch (Exception e){
+            System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
+        }
+        return nameToFindOutput;
     }
 
     /**
@@ -335,6 +377,7 @@ public class HelloController {
             leftStatus.setText("Can't parse birth year from " + updateBirthYear.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverBirthYearUpdate = -1;
         }
         catch (Exception e){
@@ -363,6 +406,7 @@ public class HelloController {
             leftStatus.setText("Can't parse number of fastest laps from " + updateFastestLap.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverFastestLapUpdate = -1;
         }
         catch (Exception e){
@@ -386,6 +430,8 @@ public class HelloController {
         //Handle exception
         catch (Exception e){
             System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
         }
         return driverNameUpdate;
     }
@@ -405,6 +451,8 @@ public class HelloController {
         //Handle exception
         catch (Exception e){
             System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
         }
         return driverNationUpdate;
     }
@@ -429,6 +477,7 @@ public class HelloController {
             leftStatus.setText("Can't parse number of races from " + updateRaces.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverRacesUpdate = -1;
         }
         catch (Exception e){
@@ -452,6 +501,8 @@ public class HelloController {
         //Handle exception
         catch (Exception e){
             System.out.println(e);
+            rightStatus.setText("");
+            leftStatus.setText("");
         }
         return driverTeamUpdate;
     }
@@ -476,6 +527,7 @@ public class HelloController {
             leftStatus.setText("Can't parse number of wins from " + updateWin.getText());
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
             driverWinUpdate = -1;
         }
         catch (Exception e){
@@ -493,6 +545,8 @@ public class HelloController {
     void listAllDrivers(ActionEvent event) {
         selectFeatures.setText("List All Drivers");
         mainView.setText(managerDocument.playerString());
+        rightStatus.setText("");
+        leftStatus.setText("");
     }
 
     /**
@@ -514,11 +568,13 @@ public class HelloController {
             rightStatus.setText("File loaded!");
             Color color = Color.BLUE;
             rightStatus.setTextFill(color);
+            leftStatus.setText("");
             //Catch exception and print out statement to left status
         } catch (Exception e){
             leftStatus.setText("No File Inserted!");
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
         }
     }
 
@@ -573,6 +629,10 @@ public class HelloController {
                     ","+ player.getRaces() +","+ player.getBirthYear()+","+ player.getNationality() +"\n";
         }
         System.out.println(string);
+        Color color = Color.BLUE;
+        leftStatus.setTextFill(color);
+        leftStatus.setText("File Saved!");
+        rightStatus.setText("");
         //Write the string to the file using PrintWriter
         try {
             PrintWriter printWriter = new PrintWriter(file);
@@ -594,6 +654,8 @@ public class HelloController {
         //Set text of the button to what user selected
         selectFeatures.setText("Drivers' Ranking");
         mainView.setText(managerDocument.playerStringForBestDriver());
+        leftStatus.setText("");
+        rightStatus.setText("");
     }
 
     /**
@@ -608,7 +670,10 @@ public class HelloController {
         mainView.setText(managerDocument.playerString());
         Color color = Color.BLUE;
         rightStatus.setTextFill(color);
+        leftStatus.setText("");
     }
+
+
 
     /**
      * Method to print out list of drivers based on number of the fastest laps to the mainView
@@ -620,6 +685,29 @@ public class HelloController {
         //Set text of the button to what user selected
         selectFeatures.setText("Top 5 Fastest Lap");
         mainView.setText(managerDocument.playerStringForDriverByFastestLap());
+        leftStatus.setText("");
+        rightStatus.setText("");
+    }
+
+    @FXML
+    void findPlayerButton(MouseEvent event) {
+        String name = nameToFindOutput;
+        if (managerDocument.getPlayerByName(name) != null) {
+            Document players = managerDocument.getPlayerByName(name);
+            mainView.setText("Name: " + players.getName() + ",\t Team: " + players.getTeam() + ",\t Nationality: "
+                    + players.getNationality() + ",\t No of Wins: " + players.getWins() + ",\t No of Races: " + players.getRaces() + ",\t No of Fastest Laps: "
+                    + players.getFastestLaps() + ",\t Birth Year: " + players.getBirthYear() + "\n");
+            Color color = Color.BLUE;
+            rightStatus.setTextFill(color);
+            rightStatus.setText("Player found!");
+            leftStatus.setText("");
+        } else{
+            rightStatus.setText("Can't find this driver, please check your input!");
+            mainView.setText("Driver " + name + " doesn't exist!");
+            Color color = Color.RED;
+            rightStatus.setTextFill(color);
+            leftStatus.setText("");
+        }
     }
 
     /**
@@ -632,6 +720,8 @@ public class HelloController {
         //Set text of the button to what user selected
         selectFeatures.setText("5 Oldest Drivers");
         mainView.setText(managerDocument.playerStringListByYear());
+        leftStatus.setText("");
+        rightStatus.setText("");
     }
 
     /**
@@ -644,6 +734,8 @@ public class HelloController {
         //Set text of the button to what user selected
         selectFeatures.setText("5 Youngest Drivers");
         mainView.setText(managerDocument.playerStringListByYearReverse());
+        leftStatus.setText("");
+        rightStatus.setText("");
     }
 
     /**
@@ -656,6 +748,8 @@ public class HelloController {
         //Set text of the button to what user selected
         selectFeatures.setText("Top 5 Wins");
         mainView.setText(managerDocument.playerStringForTop5Wins());
+        leftStatus.setText("");
+        rightStatus.setText("");
     }
 
     /**
@@ -668,13 +762,14 @@ public class HelloController {
         Document players = managerDocument.getPlayerByName(driverNameUpdate);
         if (players == null){
             mainView.setText("Player " + driverNameUpdate + " doesn't exist");
-            leftStatus.setText("You haven't entered player's name!");
+            leftStatus.setText("Please check player's name!");
             Color color = Color.RED;
             leftStatus.setTextFill(color);
         } else if(driverWinUpdate < 0 || driverRacesUpdate < 0 || driverFastestLapUpdate < 0 || driverBirthYearUpdate < 0){
             leftStatus.setText("Can't modified this driver, please check your input!");
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setText("");
         }
         else {
             if (driverTeamUpdate != null){
@@ -696,6 +791,7 @@ public class HelloController {
             rightStatus.setText("Driver's data updated!");
             Color color = Color.BLUE;
             rightStatus.setTextFill(color);
+            leftStatus.setText("");
         }
     }
 }

@@ -177,11 +177,11 @@ public class ManagerDocument{
      * @return string of list of drivers
      */
     public String playerString(){
-        String x = "";
+        String x = "List of all drivers: \n \n";
         for (Document aDocument : documents) {
-            x = x + "Name: " + aDocument.getName() +", Team: "+ aDocument.getTeam()+", Nationality: "
-                    + aDocument.getNationality()+", No of Wins: " + aDocument.getWins() +", No of Races: "+ aDocument.getRaces()+", No of Fastest Laps: "
-                    + aDocument.getFastestLaps()+", Birth Year: " + aDocument.getBirthYear() + "\n";
+            x = x + "Name: " + aDocument.getName() +",\t Team: "+ aDocument.getTeam()+",\t Nationality: "
+                    + aDocument.getNationality()+",\t No of Wins: " + aDocument.getWins() +",\t No of Races: "+ aDocument.getRaces()+",\t No of Fastest Laps: "
+                    + aDocument.getFastestLaps()+",\t Birth Year: " + aDocument.getBirthYear() + "\n";
         }
         return x;
     }
@@ -192,7 +192,7 @@ public class ManagerDocument{
      * @return string of list of size 5 sorted by number of wins
      */
     public String playerStringForTop5Wins(){
-        String x = "";
+        String x = "List of 5 drivers by number of wins: \n \n";
         List<Document> top5Wins = top5Wins();
         for (Document aDocument : top5Wins) {
             x = x + aDocument.getName() + " from " + aDocument.getTeam() +" with " +aDocument.getWins() + " wins\n";
@@ -206,7 +206,7 @@ public class ManagerDocument{
      * @return string of list sorted by number of the fastest laps
      */
     public String playerStringForDriverByFastestLap(){
-        String x = "";
+        String x = "List of 5 drivers by number of the fastest laps: \n \n";
         List<Document> top5FastestLap = top5Fastest_Lap();
         for (Document aDocument : top5FastestLap) {
             x = x + aDocument.getName() + " from " + aDocument.getTeam() +" with "+ aDocument.getFastestLaps() + " fastest laps\n";
@@ -220,7 +220,7 @@ public class ManagerDocument{
      * @return string of list sorted by ratio
      */
     public String playerStringForBestDriver(){
-        String x = "";
+        String x = "Driver's ranking by their performance: \n \n";
         List<Document> bestDriver = bestDriver();
         int wins;
         int races;
@@ -240,7 +240,7 @@ public class ManagerDocument{
      * @return string of list sorted by birth year from the oldest one
      */
     public String playerStringListByYear(){
-        String x = "";
+        String x = "List of 5 oldest drivers: \n \n";
         int age;
         List<Document> listByYear = listByYear();
         for (Document aDocument : listByYear) {
@@ -256,7 +256,7 @@ public class ManagerDocument{
      * @return string of list sorted by birth year from the youngest one
      */
     public String playerStringListByYearReverse(){
-        String x = "";
+        String x = "List of 5 youngest drivers: \n \n";
         int age;
         List<Document> listByYearReverse = listByYearReverse();
         for (Document aDocument : listByYearReverse) {
