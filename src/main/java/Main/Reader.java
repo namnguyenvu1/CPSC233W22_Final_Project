@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Reader {
-    public static List<Document> loadDocument(File fileWorld) throws FileNotFoundException {
+    public static ManagerDocument loadDocument(File fileWorld) throws FileNotFoundException {
         //Create World object newWorld
-        List<Document> documents = null;
+        ManagerDocument managerDocument = new ManagerDocument();
         List<Document> lstDocuments = new ArrayList<Document>();
         //Try to scan with throwing an exception
         if (fileWorld.exists()) {
+//            managerDocument = new ManagerDocument();
             Scanner scan = new Scanner(fileWorld);
             String line = scan.nextLine();
             //Take out 2 number to find how many lines needed to loop through
@@ -22,11 +23,12 @@ public class Reader {
                 //Split the words
                 String[] integers = line.split(",");
                 //Add to document
-                Document driver = new Players(integers[0], integers[1], Integer.parseInt(integers[2]), Integer.parseInt(integers[3]), Integer.parseInt(integers[4]), Integer.parseInt(integers[5]), integers[6]);
+                Document driver = new Players(integers[0], integers[1], Integer.parseInt(integers[2].trim()), Integer.parseInt(integers[3].trim()), Integer.parseInt(integers[4].trim()), Integer.parseInt(integers[5].trim()), integers[6]);
                 lstDocuments.add(driver);
+//                managerDocument.addPlayers(driver);
             }
         }
-        documents.addAll(lstDocuments);
-        return documents;
+        managerDocument.documents = lstDocuments;
+        return managerDocument;
     }
 }

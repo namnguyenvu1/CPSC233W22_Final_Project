@@ -14,6 +14,10 @@ public class ManagerDocument{
     public static Integer fastestLaps;
     public static Integer races;
 
+    public List<Document> getDocuments(){
+        return documents;
+    }
+
     public Document addData() {
         List<Document> lstDocuments = new ArrayList<Document>();
         int x;
@@ -145,6 +149,10 @@ public class ManagerDocument{
         this.documents.addAll(documents);
     }
 
+    public int getsize(){
+        return documents.size();
+    }
+
     public boolean deleteDocument(String id) {
         Document doc = this.documents.stream()
                 .filter(document -> document.getName().equals(id))
@@ -174,50 +182,67 @@ public class ManagerDocument{
         this.documents.stream().filter(doc -> doc instanceof Players).forEach(doc -> System.out.println(doc.toString()));
     }
 
-    public void top5Wins() {
+    public List<Document> top5Wins() {
         List<Document> top5Wins = new ArrayList<>();
+        List<Document> top5WinsNew = new ArrayList<>();
         Collections.sort(documents, new DriverWinIndexComparator());
         top5Wins = documents;
         if (top5Wins.size() < 5){
-            System.out.println(top5Wins);
+           top5WinsNew = top5Wins;
         } else{
             for(int i = 0; i < 5; i++) {
-                System.out.println(top5Wins.get(i));
+                top5WinsNew.add(top5Wins.get(i));
             }
         }
+        return top5WinsNew;
     }
 
-    public void top5Fastest_Lap() {
+    public List<Document> top5Fastest_Lap() {
         List<Document> top5FastestLap = new ArrayList<>();
+        List<Document> top5FastestLapNew = new ArrayList<>();
         Collections.sort(documents, new DriverFastestLapComparator());
         top5FastestLap = documents;
         if (top5FastestLap.size() < 5){
-            System.out.println(top5FastestLap);
+            top5FastestLapNew = top5FastestLap;
         } else{
             for(int i = 0; i < 5; i++) {
-                System.out.println(top5FastestLap.get(i));
+                top5FastestLapNew.add(top5FastestLap.get(i));
             }
         }
+        return top5FastestLapNew;
     }
 
-    public void bestDriver() {
-
+    public List<Document> bestDriver() {
+        List<Document> bestDriver = new ArrayList<>();
+        List<Document> bestDriverNew = new ArrayList<>();
+        Collections.sort(documents, new BestDriverComparator());
+        bestDriver = documents;
+        if (bestDriver.size() < 5){
+            bestDriverNew = bestDriver;
+        } else{
+            for(int i = 0; i < 5; i++) {
+                bestDriverNew.add(bestDriver.get(i));
+            }
+        }
+        return bestDriverNew;
     }
 
-    public void listByYear() {
+    public List<Document> listByYear() {
         List<Document> listByYear = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-        Document player = getPlayerByName(name);
-        System.out.println("Enter a year to print driver born after ");
-        int yearInput = scanner.nextInt();
+        List<Document> listByYearNew = new ArrayList<>();
+//        Scanner scanner = new Scanner(System.in);
+//        Document player = getPlayerByName(name);
+//        System.out.println("Enter a year to print driver born after ");
+//        int yearInput = scanner.nextInt();
         Collections.sort(documents, new DriverBirthYearComparator());
         listByYear = documents;
         for(int i = 0; i < listByYear.size(); i++) {
-            if (player.getBirthYear() > yearInput) {
-                System.out.println(listByYear.get(i));
+//            if (player.getBirthYear() > yearInput) {
+//                System.out.println(listByYear.get(i));
+            listByYearNew.add(listByYear.get(i));
             }
+        return listByYearNew;
         }
-    }
 
     public void removeData() {
         Scanner scanner =  new Scanner(System.in);
@@ -400,15 +425,56 @@ public class ManagerDocument{
     }
 
     public String playerString(){
-        //Initialize the string
-        String string = "";
-        //Loops to add Wall to first line of the string
-//        Document player = getPlayerByName(name);
-        for(int i = 0; i < documents.size(); i++) {
-            Document player = documents.get(i);
-            string = string + player + "\t";
+        String x = "";
+        for (Document aDocument : documents) {
+            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
         }
-        string = string +'\n';
-        return string;
+        return x;
+    }
+
+    public String playerStringForTop5Wins(){
+        String x = "";
+        List<Document> top5Wins = top5Wins();
+        for (Document aDocument : top5Wins) {
+            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+        }
+        return x;
+    }
+
+    public String playerStringForDriverByFastestLap(){
+        String x = "";
+        List<Document> top5FastestLap = top5Fastest_Lap();
+        for (Document aDocument : top5FastestLap) {
+            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+        }
+        return x;
+    }
+
+    public String playerStringForBestDriver(){
+        String x = "";
+        List<Document> bestDriver = bestDriver();
+        for (Document aDocument : bestDriver) {
+            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+        }
+        return x;
+    }
+
+    public String playerStringListByYear(){
+        String x = "";
+        List<Document> listByYear = listByYear();
+        for (Document aDocument : listByYear) {
+            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
+                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
+                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+        }
+        return x;
     }
 }

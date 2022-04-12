@@ -5,16 +5,8 @@ import java.util.Comparator;
 public class DriverFastestLapComparator implements Comparator<Document> {
     @Override
     public int compare(Document o1, Document o2) {
-        int result = o1.getName().compareTo(o2.getName());
-        if (result != 0) {
-            return result;
-        }
-        result = o1.getName().compareTo(o2.getName());
-        if (result != 0) {
-            return result;
-        }
         if (o1.getFastestLaps() < o2.getFastestLaps()) {
-            return -1;
+            return 1;
         }
         if (o1.getFastestLaps() > o2.getFastestLaps()) {
             return -1;

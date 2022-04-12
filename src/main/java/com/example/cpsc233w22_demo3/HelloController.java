@@ -15,11 +15,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
-    private List<Document> documents = new ArrayList<>();
+//    private List<Document> documents = new ArrayList<>();
     ManagerDocument managerDocument = new ManagerDocument();
     @FXML
     private TextField addBirthYear;
@@ -107,24 +109,10 @@ public class HelloController {
 
     @FXML
     void addDriverButton(MouseEvent event) {
-////        List<Document> lstDocuments = new ArrayList<Document>();
-//        Document driver = new Document(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
-////        lstDocuments.add(driver);
-////        documents.addAll(lstDocuments);
-//        managerDocument.addPlayers(driver);
-//        managerDocument.playerString();
-//        mainView.setText(managerDocument.playerString());
-
         Document driver = new Players(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
-        documents.add(driver);
+//        documents.add(driver);
         managerDocument.addPlayers(driver);
-        String x = "";
-        for (Document aDocument : documents) {
-            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
-        }
-        mainView.setText(x);
+        mainView.setText(managerDocument.playerString());
     }
 
     @FXML
@@ -363,8 +351,8 @@ public class HelloController {
             fileChooser.setInitialFileName("world.txt");
             File fileOpen = fileChooser.showOpenDialog(new Stage());
             System.out.println(fileOpen);
-            documents = Reader.loadDocument(new File(String.valueOf(fileOpen)));
-            mainView.setText(documents.toString());
+            managerDocument = Reader.loadDocument(new File(String.valueOf(fileOpen)));
+            mainView.setText(managerDocument.playerString());
             rightStatus.setText("File loaded!");
             Color color = Color.BLUE;
             rightStatus.setTextFill(color);
@@ -377,54 +365,97 @@ public class HelloController {
     }
 
     @FXML
+    void newMethod(ActionEvent event) {
+        //Method to print data about us and the program
+        Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, """
+                Author: Nam Nguyen Vu & Smitkumar Saraiya
+                Email: namnguyen.vu1@ucalgary.ca & smitkumar.saraiya@ucalgary.ca
+                Version: v1.0
+                This is a Statistics Tracker for Formula 1 drivers
+                """);
+        alert0.setHeaderText("Message");
+        alert0.show();
+        alert0.setTitle("About");
+    }
+
+    @FXML
     void quitProgram(ActionEvent event) {
         Platform.exit();
     }
 
     @FXML
-    void showFeaturesButton(MouseEvent event) {
+    void saveFile(ActionEvent event) {
+        //Use file chooser to set directory to save file
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(new File("."));
+        fileChooser.setInitialFileName("statistics.txt");
 
+        File file = fileChooser.showSaveDialog(new Stage());
+        //Initialize a string
+        List<Document> x = managerDocument.getDocuments();
+        String string = "";
+        string = managerDocument.getsize() + "\n";
+        for(Document i : x){
+            Document player = managerDocument.getPlayerByName(i.getName());
+            string = string + player.getTeam() +","+ player.getName()+
+                    ","+ player.getWins() + ","+player.getFastestLaps() +
+                    ","+ player.getRaces() +","+ player.getBirthYear()+","+ player.getNationality() +"\n";
+        }
+        System.out.println(string);
+        //Write the string to the file using PrintWriter
+        try {
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(string);
+            printWriter.close();
+            //Handle exception
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void bestDrivers(ActionEvent event) {
         //Set text of the button to what user selected
         selectFeatures.setText("Best Drivers");
+        mainView.setText(managerDocument.playerStringForBestDriver());
     }
 
     @FXML
     void deletePlayerButton(MouseEvent event) {
-        String name = String.valueOf(nameToDelete.getText());
+        String name = nameToDelete.getText();
+//        mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
         managerDocument.deleteDocument(name);
-        mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
-//        String x = "";
-//        for (ManagerDocument aDocument : managerDocument) {
-//            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-//                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-//                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
-//        }
+        mainView.setText(managerDocument.playerString());
     }
 
     @FXML
     void driversByFastestLap(ActionEvent event) {
         //Set text of the button to what user selected
         selectFeatures.setText("Drivers By Fastest Lap");
+        mainView.setText(managerDocument.playerStringForDriverByFastestLap());
     }
 
     @FXML
     void driversOverCertainAge(ActionEvent event) {
         //Set text of the button to what user selected
         selectFeatures.setText("Drivers over a certain age");
+        mainView.setText(managerDocument.playerStringListByYear());
     }
 
     @FXML
     void top5Wins(ActionEvent event) {
         //Set text of the button to what user selected
         selectFeatures.setText("Top 5 Wins");
+        mainView.setText(managerDocument.playerStringForTop5Wins());
     }
 
     @FXML
     void updateDriverDataButton(MouseEvent event) {
-
+        Document players = managerDocument.getPlayerByName(driverNameUpdate);
+        if (players == null){
+            //Handle
+        }
+        players.setWins(driverWinUpdate);
+        mainView.setText(managerDocument.playerString());
     }
 }
