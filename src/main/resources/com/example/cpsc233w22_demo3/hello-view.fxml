@@ -136,7 +136,7 @@
                         <Color red="0.624" green="0.624" blue="0.624" fx:id="x211111111" />
                      </textFill>
                   </Label>
-                  <Label alignment="CENTER" layoutX="13.0" layoutY="283.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Birth Year" textAlignment="CENTER" wrapText="false">
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="283.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Update Data" textAlignment="CENTER" wrapText="false">
                      <font>
                         <Font size="18.0" fx:id="x11111112" />
                      </font>
@@ -200,21 +200,21 @@
                         <Color red="0.624" green="0.624" blue="0.624" fx:id="x21111112111112" />
                      </textFill>
                   </Label>
-                  <TextField fx:id="addTeam" layoutX="90.0" layoutY="44.0" onKeyTyped="#handleAddTeam" />
-                  <TextField fx:id="addName" layoutX="90.0" layoutY="72.0" onKeyTyped="#handleAddName" />
-                  <TextField fx:id="addWin" layoutX="90.0" layoutY="100.0" onKeyTyped="#handleAddWin" />
-                  <TextField fx:id="addFastestLap" layoutX="90.0" layoutY="128.0" onKeyTyped="#handleAddFastestLap" />
-                  <TextField fx:id="addRaces" layoutX="90.0" layoutY="156.0" onKeyTyped="#handleAddRaces" />
-                  <TextField fx:id="addNation" layoutX="90.0" layoutY="184.0" onKeyTyped="#handleAddNation" />
-                  <TextField fx:id="addBirthYear" layoutX="90.0" layoutY="212.0" onKeyTyped="#handleAddBirthYear" />
+                  <TextField fx:id="addTeam" layoutX="90.0" layoutY="44.0" onKeyTyped="#handleAddTeam" promptText="Enter team..." />
+                  <TextField fx:id="addName" layoutX="90.0" layoutY="72.0" onKeyTyped="#handleAddName" promptText="Enter name..." />
+                  <TextField fx:id="addWin" layoutX="90.0" layoutY="100.0" onKeyTyped="#handleAddWin" promptText="Enter number of wins..." />
+                  <TextField fx:id="addFastestLap" layoutX="90.0" layoutY="128.0" onKeyTyped="#handleAddFastestLap" promptText="Enter no. of fastest laps" />
+                  <TextField fx:id="addRaces" layoutX="90.0" layoutY="156.0" onKeyTyped="#handleAddRaces" promptText="Enter number of races..." />
+                  <TextField fx:id="addNation" layoutX="90.0" layoutY="184.0" onKeyTyped="#handleAddNation" promptText="Enrter nationality..." />
+                  <TextField fx:id="addBirthYear" layoutX="90.0" layoutY="212.0" onKeyTyped="#handleAddBirthYear" promptText="Enter birth year..." />
                   <Button fx:id="addDriverButton" layoutX="132.0" layoutY="241.0" mnemonicParsing="false" onMouseClicked="#addDriverButton" text="Add Driver" />
-                  <TextField fx:id="updateTeam" layoutX="90.0" layoutY="316.0" onKeyTyped="#handleUpdateTeam" />
-                  <TextField fx:id="updateName" layoutX="90.0" layoutY="344.0" onKeyTyped="#handleUpdateName" />
-                  <TextField fx:id="updateWin" layoutX="90.0" layoutY="372.0" onKeyTyped="#handleUpdateWin" />
-                  <TextField fx:id="updateFastestLap" layoutX="90.0" layoutY="400.0" onKeyTyped="#handleUpdateFastestLap" />
-                  <TextField fx:id="updateRaces" layoutX="90.0" layoutY="428.0" onKeyTyped="#handleUpdateRaces" />
-                  <TextField fx:id="updateNation" layoutX="90.0" layoutY="456.0" onKeyTyped="#handleUpdateNation" />
-                  <TextField fx:id="updateBirthYear" layoutX="90.0" layoutY="484.0" onKeyTyped="#handleUpdateBirthYear" />
+                  <TextField fx:id="updateTeam" layoutX="90.0" layoutY="316.0" onKeyTyped="#handleUpdateTeam" promptText="Enter team..." />
+                  <TextField fx:id="updateName" layoutX="90.0" layoutY="344.0" onKeyTyped="#handleUpdateName" promptText="Enter name.." />
+                  <TextField fx:id="updateWin" layoutX="90.0" layoutY="372.0" onKeyTyped="#handleUpdateWin" promptText="Enter number of wins..." />
+                  <TextField fx:id="updateFastestLap" layoutX="90.0" layoutY="400.0" onKeyTyped="#handleUpdateFastestLap" promptText="Enter no. of fastest laps..." />
+                  <TextField fx:id="updateRaces" layoutX="90.0" layoutY="428.0" onKeyTyped="#handleUpdateRaces" promptText="Enter number of races..." />
+                  <TextField fx:id="updateNation" layoutX="90.0" layoutY="456.0" onKeyTyped="#handleUpdateNation" promptText="Enter nationality..." />
+                  <TextField fx:id="updateBirthYear" layoutX="90.0" layoutY="484.0" onKeyTyped="#handleUpdateBirthYear" promptText="Enter birth year..." />
                   <Button fx:id="updateDriverDataButton" layoutX="109.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#updateDriverDataButton" text="Update Driver Data" />
           </children>
         </AnchorPane>
@@ -254,7 +254,7 @@
                         <Color red="0.624" green="0.624" blue="0.624" fx:id="x22" />
                      </textFill>
                   </Label>
-                  <Label alignment="CENTER" layoutX="10.0" layoutY="171.0" style="&#10;" text="Name" textAlignment="CENTER" wrapText="false">
+                  <Label alignment="CENTER" layoutX="6.0" layoutY="172.0" style="&#10;" text="Name" textAlignment="CENTER" wrapText="false">
                      <font>
                         <Font size="18.0" fx:id="x121" />
                      </font>
@@ -262,7 +262,7 @@
                         <Color red="0.624" green="0.624" blue="0.624" fx:id="x221" />
                      </textFill>
                   </Label>
-                  <TextField fx:id="nameToDelete" layoutX="63.0" layoutY="170.0" onKeyTyped="#handleNameToDelete" prefHeight="26.0" prefWidth="128.0" />
+                  <TextField fx:id="nameToDelete" layoutX="55.0" layoutY="170.0" onKeyTyped="#handleNameToDelete" prefHeight="26.0" prefWidth="136.0" promptText="Enter name to delete..." />
                   <Button fx:id="deletePlayer" layoutX="73.0" layoutY="203.0" mnemonicParsing="false" onMouseClicked="#deletePlayerButton" text="Delete" />
           </children>
         </AnchorPane>

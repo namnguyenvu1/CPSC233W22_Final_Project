@@ -13,6 +13,7 @@ public class Document implements Comparable<Document>{
     protected int birthYear;
     protected String nationality;
 
+    //Constructor
     public Document(String team, String name, int wins, int fastestLaps, int races, int birthYear, String nationality) {
         this.team = team;
         this.name = name;
@@ -23,42 +24,52 @@ public class Document implements Comparable<Document>{
         this.nationality = nationality;
     }
 
+    //Return the team of the driver
     public String getTeam() {
         return team;
     }
 
+    //Set a value of team of driver
     public void setTeam(String team) {
         this.team = team;
     }
 
+    //Return the driver's name
     public String getName() {
         return name;
     }
 
+    //Set the driver's name
     public void setName(String name) {
         this.name = name;
     }
 
+    //Return the number of wins of driver
     public int getWins() {
         return wins;
     }
 
+    //Set the number of wins of driver
     public void setWins(int wins) {
         this.wins = wins;
     }
 
+    //Return the number of the fastest lap of driver
     public int getFastestLaps() {
         return fastestLaps;
     }
 
+    //Set the number of the fastest lap of driver
     public void setFastestLaps(int fastestLaps) {
         this.fastestLaps = fastestLaps;
     }
 
+    //Return number of races the driver took part in
     public int getRaces() {
         return races;
     }
 
+    //Set number of races the driver took part in
     public void setRaces(int races) {
         this.races = races;
     }

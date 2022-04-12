@@ -603,9 +603,9 @@ public class HelloController {
     void deletePlayerButton(MouseEvent event) {
         String name = nameToDelete.getText();
 //        mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
-        managerDocument.deleteDocument(name);
+//        managerDocument.deleteDocument(name);
+        rightStatus.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
         mainView.setText(managerDocument.playerString());
-        rightStatus.setText("Driver removed!");
         Color color = Color.BLUE;
         rightStatus.setTextFill(color);
     }
@@ -682,6 +682,8 @@ public class HelloController {
             }
             mainView.setText(managerDocument.playerString());
         }
+        leftStatus.setText("");
+        rightStatus.setText("");
 //        players.setWins(driverWinUpdate);
 //        mainView.setText(managerDocument.playerString());
     }
