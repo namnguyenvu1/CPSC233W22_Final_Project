@@ -518,7 +518,7 @@ public class HelloController {
         //Use file chooser to set directory to save file
         final FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("."));
-        fileChooser.setInitialFileName("statistics.txt");
+        fileChooser.setInitialFileName("statistics.csv");
 
         File file = fileChooser.showSaveDialog(new Stage());
         //Initialize a string

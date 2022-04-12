@@ -15,6 +15,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+
+        stage.setTitle("Statistics Tracker for Formula 1 drivers v1.0");
     }
 
     public static void main(String[] args) {

@@ -292,9 +292,9 @@ public class ManagerDocument{
     public String playerString(){
         String x = "";
         for (Document aDocument : documents) {
-            x = x + aDocument.getName() +","+ aDocument.getTeam()+","
-                    + aDocument.getNationality()+"," + aDocument.getWins() +","+ aDocument.getRaces()+","
-                    + aDocument.getFastestLaps()+"," + aDocument.getBirthYear() + "\n";
+            x = x + "Name: " + aDocument.getName() +", Team: "+ aDocument.getTeam()+", Nationality: "
+                    + aDocument.getNationality()+", No of Wins: " + aDocument.getWins() +", No of Races: "+ aDocument.getRaces()+", No of Fastest Laps: "
+                    + aDocument.getFastestLaps()+", Birth Year: " + aDocument.getBirthYear() + "\n";
         }
         return x;
     }
@@ -303,7 +303,7 @@ public class ManagerDocument{
         String x = "";
         List<Document> top5Wins = top5Wins();
         for (Document aDocument : top5Wins) {
-            x = x + aDocument.getName() +" with " +aDocument.getWins() + " wins\n";
+            x = x + aDocument.getName() + " from " + aDocument.getTeam() +" with " +aDocument.getWins() + " wins\n";
         }
         return x;
     }
@@ -312,7 +312,7 @@ public class ManagerDocument{
         String x = "";
         List<Document> top5FastestLap = top5Fastest_Lap();
         for (Document aDocument : top5FastestLap) {
-            x = x + aDocument.getName() +" with "+ aDocument.getFastestLaps() + " fastest laps\n";
+            x = x + aDocument.getName() + " from " + aDocument.getTeam() +" with "+ aDocument.getFastestLaps() + " fastest laps\n";
         }
         return x;
     }
@@ -327,7 +327,7 @@ public class ManagerDocument{
             wins = aDocument.getWins();
             races = aDocument.getRaces();
             winPercentage = 100 * wins/races;
-            x = x + aDocument.getName() +" with "+ winPercentage + " win percentage\n";
+            x = x + aDocument.getName() + " from " + aDocument.getTeam()+" with "+ winPercentage + " win percentage\n";
         }
         return x;
     }
@@ -338,7 +338,7 @@ public class ManagerDocument{
         List<Document> listByYear = listByYear();
         for (Document aDocument : listByYear) {
             age = 2022 - aDocument.getBirthYear();
-            x = x + aDocument.getName() +" is now " + age + " years old\n";
+            x = x + aDocument.getName() + " from " + aDocument.getTeam()+" is now " + age + " years old\n";
         }
         return x;
     }
