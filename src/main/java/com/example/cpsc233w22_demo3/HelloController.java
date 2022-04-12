@@ -118,12 +118,18 @@ public class HelloController {
      */
     @FXML
     void addDriverButton(MouseEvent event) {
-        Document driver = new Players(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
-        managerDocument.addPlayers(driver);
-        mainView.setText(managerDocument.playerString());
-        rightStatus.setText("Driver added!");
-        Color color = Color.BLUE;
-        rightStatus.setTextFill(color);
+        if (driverWin >= 0 && driverFastestLap >= 0 && driverRaces >= 0 && driverBirthYear >= 0) {
+            Document driver = new Players(driverTeam, driverName, driverWin, driverFastestLap, driverRaces, driverBirthYear, driverNation);
+            managerDocument.addPlayers(driver);
+            mainView.setText(managerDocument.playerString());
+            rightStatus.setText("Driver added!");
+            Color color = Color.BLUE;
+            rightStatus.setTextFill(color);
+        } else {
+            leftStatus.setText("Can't add this driver, please check your input!");
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+        }
     }
 
     /**
@@ -143,6 +149,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse birth year from " + addBirthYear.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverBirthYear = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -167,6 +177,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse number of fastest laps from " + addFastestLap.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverFastestLap = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -219,6 +233,7 @@ public class HelloController {
      * @return the number of races of driver entered by the users after checked
      */
     @FXML
+    //Notice
     int handleAddRaces(KeyEvent event) {
         //Try to check races input of driver
         try{
@@ -229,6 +244,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse number of races from " + addRaces.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverRaces = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -272,6 +291,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse number of wins from " + addWin.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverWin = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -307,6 +330,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse birth year from " + updateBirthYear.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverBirthYearUpdate = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -331,6 +358,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse number of fastest laps from " + updateFastestLap.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverFastestLapUpdate = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -393,6 +424,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse number of races from " + updateRaces.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverRacesUpdate = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -436,6 +471,10 @@ public class HelloController {
             Alert alert0 = new Alert(Alert.AlertType.CONFIRMATION, "Please enter integer!");
             alert0.setHeaderText("Message");
             alert0.show();
+            leftStatus.setText("Can't parse number of wins from " + updateWin.getText());
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+            driverWinUpdate = -1;
         }
         catch (Exception e){
             System.out.println(e);
@@ -617,7 +656,15 @@ public class HelloController {
         Document players = managerDocument.getPlayerByName(driverNameUpdate);
         if (players == null){
             mainView.setText("Player " + driverNameUpdate + " doesn't exist");
-        } else {
+            leftStatus.setText("You haven't entered player's name!");
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+        } else if(driverWinUpdate < 0 || driverRacesUpdate < 0 || driverFastestLapUpdate < 0 || driverBirthYearUpdate < 0){
+            leftStatus.setText("Can't modified this driver, please check your input!");
+            Color color = Color.RED;
+            leftStatus.setTextFill(color);
+        }
+        else {
             if (driverTeamUpdate != null){
                 players.setTeam(driverTeamUpdate);
             } if (driverNationUpdate != null){

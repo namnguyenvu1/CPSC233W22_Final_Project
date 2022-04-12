@@ -63,7 +63,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#newMethod" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" onAction="#newMethod" text="About Formula 1 Stats Tracker" />
           </items>
         </Menu>
       </menus>
