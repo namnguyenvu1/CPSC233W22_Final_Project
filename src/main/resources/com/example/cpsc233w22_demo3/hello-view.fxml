@@ -136,7 +136,7 @@
                         <Color red="0.624" green="0.624" blue="0.624" fx:id="x211111111" />
                      </textFill>
                   </Label>
-                  <Label alignment="CENTER" layoutX="13.0" layoutY="283.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Birth Year" textAlignment="CENTER" wrapText="false">
+                  <Label alignment="CENTER" layoutX="13.0" layoutY="283.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Update Data" textAlignment="CENTER" wrapText="false">
                      <font>
                         <Font size="18.0" fx:id="x11111112" />
                      </font>
@@ -240,9 +240,9 @@
                   <SplitMenuButton fx:id="selectFeatures" layoutX="29.0" layoutY="37.0" mnemonicParsing="false" text="Select Features">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#top5Wins" text="Top 5 Wins" />
-                      <MenuItem mnemonicParsing="false" onAction="#driversByFastestLap" text="Drivers By Fastest Lap" />
-                        <MenuItem mnemonicParsing="false" onAction="#bestDrivers" text="Best Drivers" />
-                        <MenuItem mnemonicParsing="false" onAction="#driversOverCertainAge" text="Drivers over a certain age" />
+                      <MenuItem mnemonicParsing="false" onAction="#driversByFastestLap" text="Top 5 Fastest Lap" />
+                        <MenuItem mnemonicParsing="false" onAction="#bestDrivers" text="Drivers Ranking" />
+                        <MenuItem mnemonicParsing="false" onAction="#driversOverCertainAge" text="Top 5 Oldest Drivers" />
                         <MenuItem mnemonicParsing="false" onAction="#listAllDrivers" text="List all drivers" />
                     </items>
                   </SplitMenuButton>

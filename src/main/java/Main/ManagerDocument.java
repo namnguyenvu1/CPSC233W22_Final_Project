@@ -123,12 +123,8 @@ public class ManagerDocument{
         List<Document> bestDriverNew = new ArrayList<>();
         Collections.sort(documents, new BestDriverComparator());
         bestDriver = documents;
-        if (bestDriver.size() < 5){
-            bestDriverNew = bestDriver;
-        } else{
-            for(int i = 0; i < 5; i++) {
-                bestDriverNew.add(bestDriver.get(i));
-            }
+        for (int i = 0; i < bestDriver.size(); i++){
+            bestDriverNew.add(bestDriver.get(i));
         }
         return bestDriverNew;
     }
