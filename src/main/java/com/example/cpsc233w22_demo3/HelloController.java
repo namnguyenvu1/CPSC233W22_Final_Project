@@ -602,10 +602,8 @@ public class HelloController {
     @FXML
     void deletePlayerButton(MouseEvent event) {
         String name = nameToDelete.getText();
-//        mainView.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
-        managerDocument.deleteDocument(name);
+        rightStatus.setText(managerDocument.deleteDocument(name) ? "Success" : "Fail");
         mainView.setText(managerDocument.playerString());
-        rightStatus.setText("Driver removed!");
         Color color = Color.BLUE;
         rightStatus.setTextFill(color);
     }
@@ -681,8 +679,9 @@ public class HelloController {
                 players.setBirthYear(driverBirthYearUpdate);
             }
             mainView.setText(managerDocument.playerString());
+            rightStatus.setText("Driver's data updated!");
+            Color color = Color.BLUE;
+            rightStatus.setTextFill(color);
         }
-//        players.setWins(driverWinUpdate);
-//        mainView.setText(managerDocument.playerString());
     }
 }
