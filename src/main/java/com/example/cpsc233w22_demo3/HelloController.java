@@ -21,7 +21,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class HelloController {
-    ManagerDocument managerDocument = new ManagerDocument();
+    private ManagerDocument managerDocument;
+
+    public ManagerDocument getManagerDocument() {
+        return managerDocument;
+    }
+
+    public void setManagerDocument(ManagerDocument managerDocument) {
+        this.managerDocument = managerDocument;
+    }
 
     // FXML Part
     @FXML
@@ -249,7 +257,6 @@ public class HelloController {
      * @return the number of races of driver entered by the users after checked
      */
     @FXML
-    //Notice
     int handleAddRaces(KeyEvent event) {
         //Try to check races input of driver
         try{
@@ -673,8 +680,6 @@ public class HelloController {
         leftStatus.setText("");
     }
 
-
-
     /**
      * Method to print out list of drivers based on number of the fastest laps to the mainView
      *
@@ -703,7 +708,7 @@ public class HelloController {
             leftStatus.setText("");
         } else{
             rightStatus.setText("Can't find this driver, please check your input!");
-            mainView.setText("Driver " + name + " doesn't exist!");
+//            mainView.setText("Driver " + name + " doesn't exist!");
             Color color = Color.RED;
             rightStatus.setTextFill(color);
             leftStatus.setText("");
@@ -761,10 +766,11 @@ public class HelloController {
     void updateDriverDataButton(MouseEvent event) {
         Document players = managerDocument.getPlayerByName(driverNameUpdate);
         if (players == null){
-            mainView.setText("Player " + driverNameUpdate + " doesn't exist");
+            rightStatus.setText("Player " + driverNameUpdate + " doesn't exist");
             leftStatus.setText("Please check player's name!");
             Color color = Color.RED;
             leftStatus.setTextFill(color);
+            rightStatus.setTextFill(color);
         } else if(driverWinUpdate < 0 || driverRacesUpdate < 0 || driverFastestLapUpdate < 0 || driverBirthYearUpdate < 0){
             leftStatus.setText("Can't modified this driver, please check your input!");
             Color color = Color.RED;

@@ -264,7 +264,7 @@
                      </textFill>
                   </Label>
                   <TextField fx:id="nameToDelete" layoutX="63.0" layoutY="170.0" onKeyTyped="#handleNameToDelete" prefHeight="26.0" prefWidth="128.0" promptText="Enter Name" />
-                  <Button fx:id="deletePlayer" layoutX="73.0" layoutY="203.0" mnemonicParsing="false" onMouseClicked="#deletePlayerButton" text="Delete" />
+                  <Button fx:id="deletePlayer" layoutX="73.0" layoutY="203.0" mnemonicParsing="false" onMouseClicked="#deletePlayerButton" text="Remove" />
                   <Label alignment="CENTER" layoutX="10.0" layoutY="240.0" style="&#10;" text="Find Driver" textAlignment="CENTER" wrapText="false">
                      <font>
                         <Font size="18.0" fx:id="x122" />

@@ -83,6 +83,7 @@ public class ManagerDocument{
         List<Document> top5WinsNew = new ArrayList<>();
         Collections.sort(documents, new DriverWinIndexComparator());
         top5Wins = documents;
+        System.out.println(top5Wins);
         if (top5Wins.size() < 5){
            top5WinsNew = top5Wins;
         } else{

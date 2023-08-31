@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Reader {
-    public static ManagerDocument loadDocument(File fileWorld) throws FileNotFoundException {
+    public static ManagerDocument loadDocument(File file) throws FileNotFoundException {
         //Create World object newWorld
         ManagerDocument managerDocument = new ManagerDocument();
         List<Document> lstDocuments = new ArrayList<Document>();
         //Try to scan with throwing an exception
-        if (fileWorld.exists()) {
+        if (file.exists()) {
 //            managerDocument = new ManagerDocument();
-            Scanner scan = new Scanner(fileWorld);
+            Scanner scan = new Scanner(file);
             String line = scan.nextLine();
             //Take out 2 number to find how many lines needed to loop through
             int numberOfLine = Integer.parseInt(line);
